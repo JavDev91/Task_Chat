@@ -7,17 +7,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Controller  {
+
     @FXML
     Stage stage;
-
-
-    @FXML
+     @FXML
     Button task_new;
+    @FXML
+    ListView list_ip;
+    @FXML
+    ListView list_user;
+    @FXML
+    ListView list_task;
+
+    ListView list;
+
+
+
 
 //    @FXML
 //    public void initialize() {
@@ -52,6 +63,17 @@ public class Controller  {
         controller.task_new();
         controller.openDia1(stage);
 
+
+
+
+    }
+
+    @FXML
+    public void buildList() {
+
+        this.list = list;
+        Connect connect = new Connect();
+        connect.getList();
 
 
 

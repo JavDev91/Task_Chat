@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +19,7 @@ public class Main extends Application {
     ScrollPane left;
 
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -27,6 +29,12 @@ public class Main extends Application {
             showCenter();
             showRight();
             showLeft();
+        Connect connect = new Connect();
+        connect.getSQL("IP");
+
+        connect.getSQL("Login");
+        connect.getSQL("KABINET.COMP");
+
 
     }
 

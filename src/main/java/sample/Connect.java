@@ -2,8 +2,7 @@ package sample;
 
 import com.mysql.jdbc.Connection;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by prog on 15.07.2016.
@@ -13,6 +12,11 @@ public class Connect  {
     private String login = "root";
     private String password = "8323102";
     private String URL = "jdbc:mysql://10.41.0.111:3306";
+    String column;
+    Statement statement;
+    ResultSet rs;
+    Array listSql;
+
     java.sql.Connection connection = null;
 
 
@@ -44,6 +48,25 @@ public class Connect  {
         }
 
 
+    }
+
+    public  void getSQL(String column) throws SQLException {
+
+        this.column = column;
+        String query = "SELECT " + column + " FROM taskchat.users ";
+        toConnect();
+        statement = connection.createStatement();
+        rs = statement.executeQuery(query);
+        while (rs.next()) {
+            listSql = rs.getArray(1);
+        }
+        toDisconnect();
+
+
+    }
+
+    public Array getList() {
+        return listSql;
     }
 
 //    public static void main(String [] args) throws SQLException {
