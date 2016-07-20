@@ -68,15 +68,15 @@ public class Controller  {
 
     }
 
-    @FXML
-    public void buildList() {
-
-        this.list = list;
-        Connect connect = new Connect();
-        connect.getList();
-
-
-
-    }
+//    @FXML
+//    public void buildList() {
+//
+//        this.list = list;
+//        Connect connect = new Connect();
+//        connect.getList();
+//
+//
+//
+//    }
 }
 

@@ -3,6 +3,8 @@ package sample;
 import com.mysql.jdbc.Connection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by prog on 15.07.2016.
@@ -15,7 +17,8 @@ public class Connect  {
     String column;
     Statement statement;
     ResultSet rs;
-    Array listSql;
+    List<String> listSql;
+    int indexList = 1;
 
     java.sql.Connection connection = null;
 
@@ -57,17 +60,18 @@ public class Connect  {
         toConnect();
         statement = connection.createStatement();
         rs = statement.executeQuery(query);
+        listSql = new ArrayList<String>();
+
         while (rs.next()) {
-            listSql = rs.getArray(1);
+            listSql.add(i);
         }
-        toDisconnect();
+        System.out.println(listSql);
+        toDisconnect(indexList,);
 
 
     }
 
-    public Array getList() {
-        return listSql;
-    }
+
 
 //    public static void main(String [] args) throws SQLException {
 //

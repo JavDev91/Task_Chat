@@ -31,9 +31,9 @@ public class Main extends Application {
             showLeft();
         Connect connect = new Connect();
         connect.getSQL("IP");
-
-        connect.getSQL("Login");
-        connect.getSQL("KABINET.COMP");
+//
+//        connect.getSQL("Login");
+//        connect.getSQL("KABINET.COMP");
 
 
     }
