@@ -4,6 +4,7 @@ import com.mysql.jdbc.Connection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,7 +19,8 @@ public class Connect  {
     Statement statement;
     ResultSet rs;
     List<String> listSql;
-    int indexList = 1;
+
+
 
     java.sql.Connection connection = null;
 
@@ -53,7 +55,7 @@ public class Connect  {
 
     }
 
-    public  void getSQL(String column) throws SQLException {
+    public List<String> getSQL(String column) throws SQLException {
 
         this.column = column;
         String query = "SELECT " + column + " FROM taskchat.users ";
@@ -63,12 +65,10 @@ public class Connect  {
         listSql = new ArrayList<String>();
 
         while (rs.next()) {
-            listSql.add(i);
+            listSql.add(rs.getString(1));
         }
-        System.out.println(listSql);
-        toDisconnect(indexList,);
-
-
+        toDisconnect();
+        return listSql;
     }
 
 
@@ -76,10 +76,9 @@ public class Connect  {
 //    public static void main(String [] args) throws SQLException {
 //
 //        Connect connect = new Connect();
-//        connect.toConnect();
-//        System.out.println("Connect open");
-//        connect.toDisconnect();
-//        System.out.println("connect close");
+//        connect.getSQL("login");
+//
+//
 //    }
 
 }

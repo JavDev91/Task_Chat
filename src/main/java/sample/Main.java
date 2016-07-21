@@ -29,8 +29,9 @@ public class Main extends Application {
             showCenter();
             showRight();
             showLeft();
-        Connect connect = new Connect();
-        connect.getSQL("IP");
+        Controller controller = new Controller();
+        controller.buildList();
+        System.out.println("List is success");
 //
 //        connect.getSQL("Login");
 //        connect.getSQL("KABINET.COMP");

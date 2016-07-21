@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,25 +9,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class Controller  {
+public class Controller <String> extends Control {
 
     @FXML
     Stage stage;
      @FXML
     Button task_new;
     @FXML
-    ListView list_ip;
+    ListView <String> list_ip;
     @FXML
     ListView list_user;
     @FXML
     ListView list_task;
 
-    ListView list;
+    ArrayList <String> tempList;
 
 
 
@@ -68,15 +73,19 @@ public class Controller  {
 
     }
 
-//    @FXML
-//    public void buildList() {
-//
-//        this.list = list;
-//        Connect connect = new Connect();
-//        connect.getList();
-//
-//
-//
-//    }
+    @FXML
+    public void buildList() throws SQLException {
+
+
+        Connect connect = new Connect();
+        tempList = (ArrayList<String>) connect.getSQL("IP");
+        System.out.println(tempList);
+        ObservableList <String> list_ip_view =  FXCollections.observableArrayList(tempList);
+        list_ip = new ListView(list_ip_view);
+        list_ip.
+
+
+
+    }
 }
 
