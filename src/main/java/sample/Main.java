@@ -1,8 +1,9 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -18,7 +19,8 @@ public class Main extends Application {
     AnchorPane right;
     ScrollPane left;
 
-
+    @FXML
+    ListView<String> list_ip ;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -29,8 +31,8 @@ public class Main extends Application {
             showCenter();
             showRight();
             showLeft();
-        Controller controller = new Controller();
-        controller.buildList();
+        Connect connect = new Connect();
+        connect.getSQL("IP");
         System.out.println("List is success");
 //
 //        connect.getSQL("Login");

@@ -1,11 +1,16 @@
 package sample;
 
-import com.mysql.jdbc.Connection;
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * Created by prog on 15.07.2016.
@@ -18,8 +23,10 @@ public class Connect  {
     String column;
     Statement statement;
     ResultSet rs;
-    List<String> listSql;
-
+    ArrayList<String> listSql;
+    ObservableList <String> list;
+    @FXML
+    ListView list_task;
 
 
     java.sql.Connection connection = null;
@@ -55,7 +62,7 @@ public class Connect  {
 
     }
 
-    public List<String> getSQL(String column) throws SQLException {
+    public ObservableList<String> getSQL(String column) throws SQLException {
 
         this.column = column;
         String query = "SELECT " + column + " FROM taskchat.users ";
@@ -67,8 +74,11 @@ public class Connect  {
         while (rs.next()) {
             listSql.add(rs.getString(1));
         }
+        list = FXCollections.observableArrayList(listSql);
+        list_task.setItems(list);
+        System.out.println(list);
         toDisconnect();
-        return listSql;
+        return list;
     }
 
 
