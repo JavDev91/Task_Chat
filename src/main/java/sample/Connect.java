@@ -24,9 +24,9 @@ public class Connect  {
     Statement statement;
     ResultSet rs;
     ArrayList<String> listSql;
-    ObservableList <String> list;
-    @FXML
-    ListView list_task;
+    Object [] list_ip;
+
+
 
 
     java.sql.Connection connection = null;
@@ -62,7 +62,7 @@ public class Connect  {
 
     }
 
-    public ObservableList<String> getSQL(String column) throws SQLException {
+    public Object[] getSQL(String column) throws SQLException {
 
         this.column = column;
         String query = "SELECT " + column + " FROM taskchat.users ";
@@ -72,13 +72,12 @@ public class Connect  {
         listSql = new ArrayList<String>();
 
         while (rs.next()) {
-            listSql.add(rs.getString(1));
+
+            listSql.add(rs.toString());
         }
-        list = FXCollections.observableArrayList(listSql);
-        list_task.setItems(list);
-        System.out.println(list);
+        list_ip = listSql.toArray();
         toDisconnect();
-        return list;
+        return list_ip;
     }
 
 

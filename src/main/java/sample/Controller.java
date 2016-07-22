@@ -1,24 +1,25 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableArrayBase;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Array;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.ResourceBundle;
 
 public class Controller  {
 
@@ -34,7 +35,7 @@ public class Controller  {
     ListView list_task;
 
 
-    ObservableList<String> tempList;
+    Object [] tempList;
 
 
 
@@ -77,19 +78,17 @@ public class Controller  {
 
     }
 
-//    @FXML
-//    public void buildList() throws SQLException {
-//
-//        String IP = "IP";
-//        Connect connect = new Connect();
-//        tempList = connect.getSQL(IP);
-//
-//
-//
-//        }
+    @FXML
+    public void buildList() throws SQLException   {
 
+        String IP = "IP";
+        Connect connect = new Connect();
+        tempList = connect.getSQL(IP);
+        ObservableList list =  FXCollections.observableArrayList(tempList);
 
+        list_ip.setItems(list);
 
+        }
 
 
 
