@@ -34,8 +34,8 @@ public class Controller  {
     @FXML
     ListView list_task;
 
-
-    Object [] tempList;
+    ObservableList <String> list;
+    ArrayList tempList;
 
 
 
@@ -80,12 +80,16 @@ public class Controller  {
 
     @FXML
     public void buildList() throws SQLException   {
-
+        list =  FXCollections.observableArrayList();
         String IP = "IP";
         Connect connect = new Connect();
         tempList = connect.getSQL(IP);
-        ObservableList list =  FXCollections.observableArrayList(tempList);
+        for (int i =1; i<tempList.size();i++) {
 
+            list.add(tempList.get(i).toString());
+        }
+
+        System.out.println(list);
         list_ip.setItems(list);
 
         }

@@ -24,7 +24,7 @@ public class Connect  {
     Statement statement;
     ResultSet rs;
     ArrayList<String> listSql;
-    Object [] list_ip;
+
 
 
 
@@ -62,7 +62,7 @@ public class Connect  {
 
     }
 
-    public Object[] getSQL(String column) throws SQLException {
+    public ArrayList <String> getSQL(String column) throws SQLException {
 
         this.column = column;
         String query = "SELECT " + column + " FROM taskchat.users ";
@@ -75,9 +75,9 @@ public class Connect  {
 
             listSql.add(rs.toString());
         }
-        list_ip = listSql.toArray();
+
         toDisconnect();
-        return list_ip;
+        return listSql;
     }
 
 
