@@ -1,50 +1,41 @@
 package sample;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableArrayBase;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class Controller  {
+public class Controller {
 
     @FXML
     Stage stage;
      @FXML
     Button task_new;
     @FXML
-    ListView <String> list_ip;
+    ListView<String> list_ip, list_user,list_kab, list_task;
+
     @FXML
-    ListView list_user;
+    Accordion List_main;
     @FXML
-    ListView list_task;
+    TitledPane list_ip_slave, list_kab_slave, list_user_slave;
 
-    ObservableList <String> list;
-    ArrayList tempList;
+    ObservableList<String> list;
+    ArrayList <String> tempList;
 
-
-
-
-//    @FXML
-//    public void initialize() {
-//
-//        });
-//    }
 
         @FXML
         private void task_new()  {
@@ -66,35 +57,44 @@ public class Controller  {
 
         }
 
+    public void buildListIP() throws SQLException   {
+        Connect connect = new Connect();
+        tempList = connect.getSQL("users","IP");
+        list =  FXCollections.observableArrayList(tempList);
+        list_ip.setItems(list);
+        }
 
-    @FXML
-    public void onClick() {
-        Controller controller = new Controller();
-        controller.task_new();
-        controller.openDia1(stage);
-
-
-
-
+    public void buildListUser() throws SQLException {
+        Connect connect = new Connect();
+        tempList = connect.getSQL("users","Login");
+        list =  FXCollections.observableArrayList(tempList);
+        list_user.setItems(list);
     }
 
-    @FXML
-    public void buildList() throws SQLException   {
-        list =  FXCollections.observableArrayList();
-        String IP = "IP";
+    public void buildListKab() throws SQLException {
         Connect connect = new Connect();
-        tempList = connect.getSQL(IP);
-        for (int i =1; i<tempList.size();i++) {
+        tempList = connect.getSQL("users","KABINET");
+        list =  FXCollections.observableArrayList(tempList);
+        list_kab.setItems(list);
+    }
 
-            list.add(tempList.get(i).toString());
-        }
+    public void buildListTask() throws SQLException{
+        Connect connect = new Connect();
+        tempList = connect.getSQL("tasks","Task_name");
+        list =  FXCollections.observableArrayList(tempList);
+        list_task.setItems(list);
+    }
 
-        System.out.println(list);
-        list_ip.setItems(list);
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+//        try {
+//            buildListTask();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } catch (NullPointerException e) {
+//            tempList.add("Заданий нет");
+//        }
 
-        }
-
-
-
+//    }
 }
 

@@ -19,8 +19,6 @@ public class Main extends Application {
     AnchorPane right;
     ScrollPane left;
 
-    @FXML
-    ListView list_ip;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -33,12 +31,8 @@ public class Main extends Application {
             showLeft();
 
 
-        //
-//        connect.getSQL("Login");
-//        connect.getSQL("KABINET.COMP");
-
-
     }
+
 
 
     public void initRootLayout() throws Exception{
@@ -69,6 +63,7 @@ public class Main extends Application {
         fxmlLoader.setLocation(Main.class.getResource("/sample_right.fxml"));
         right = fxmlLoader.load();
         rootLayout.setRight(right);
+
     }
 
     public  void showLeft() throws Exception{

@@ -20,6 +20,7 @@ public class Connect  {
     private String login = "root";
     private String password = "8323102";
     private String URL = "jdbc:mysql://10.41.0.111:3306";
+    String table;
     String column;
     Statement statement;
     ResultSet rs;
@@ -62,10 +63,10 @@ public class Connect  {
 
     }
 
-    public ArrayList <String> getSQL(String column) throws SQLException {
-
+    public ArrayList <String> getSQL(String table, String column) throws SQLException {
+        this.table = table;
         this.column = column;
-        String query = "SELECT " + column + " FROM taskchat.users ";
+        String query = "SELECT " + column + " FROM taskchat." + table;
         toConnect();
         statement = connection.createStatement();
         rs = statement.executeQuery(query);
@@ -73,7 +74,7 @@ public class Connect  {
 
         while (rs.next()) {
 
-            listSql.add(rs.toString());
+            listSql.add(rs.getString(1));
         }
 
         toDisconnect();

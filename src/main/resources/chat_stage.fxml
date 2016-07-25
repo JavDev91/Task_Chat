@@ -29,7 +29,7 @@
     <bottom>
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
-                <Button fx:id="task_new" mnemonicParsing="false" onAction="#buildList" text="Button" />
+                <Button fx:id="task_new" mnemonicParsing="false"  text="Button" />
             </items>
         </ToolBar>
     </bottom>
